@@ -1,0 +1,11 @@
+__pycache__/
+.venv/
+datasets/
+logs/
+!statistics/figures/
+statistics/figures/*.aux
+statistics/figures/*.bbl
+statistics/figures/*.blg
+statistics/figures/*.out
+statistics/figures/*.fls
+statistics/figures/*.fdb_latexmk

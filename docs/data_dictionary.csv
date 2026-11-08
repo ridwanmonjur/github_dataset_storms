@@ -1,0 +1,293 @@
+table,column,kind,unit,description
+emdat,disasterno,key,,EM-DAT event id without its country suffix (e.g. 2013-0433)
+emdat,iso3,key,,ISO 3166 alpha-3 country code (EM-DAT's where codes differ)
+emdat,country_name,raw,,country name as in EM-DAT
+emdat,event_name,raw,,EM-DAT's event name (storm names for most cyclones and extra-tropical storms)
+emdat,disaster_type,raw,,"EM-DAT disaster type (Storm, Flood, ...)"
+emdat,disaster_subtype,raw,,"EM-DAT disaster subtype (Tropical cyclone, Tornado, ...)"
+emdat,associated_types,raw,,"EM-DAT's associated hazards, |-separated"
+emdat,glide,raw,,"GLIDE numbers, |-separated"
+emdat,location,raw,,affected places as written by EM-DAT
+emdat,year,raw,year,start year
+emdat,start_month,raw,month,start month
+emdat,start_day,raw,day,start day; empty = unknown
+emdat,end_year,raw,year,end year
+emdat,end_month,raw,month,end month
+emdat,end_day,raw,day,end day; empty = unknown
+emdat,deaths,raw,people,total deaths
+emdat,injured,raw,people,injured
+emdat,affected,raw,people,affected
+emdat,homeless,raw,people,homeless
+emdat,total_affected,raw,people,injured + affected + homeless (EM-DAT's)
+emdat,total_damage_usd,derived,US$ (nominal),"economic damage, EM-DAT's '000 US$ x 1,000"
+emdat,hazard,derived,,storm for EM-DAT's 11 storm subtypes (the events); empty for every other disaster (cascade partners)
+geodisasters,disasterno,key,,EM-DAT event id without its country suffix (e.g. 2013-0433)
+geodisasters,iso3,key,,ISO 3166 alpha-3 country code (EM-DAT's where codes differ)
+geodisasters,admin_level,raw,,GAUL level of the affected unit (1 or 2)
+geodisasters,adm1_code,raw,,GAUL level-1 code
+geodisasters,adm1_name,raw,,GAUL level-1 name
+geodisasters,adm2_code,raw,,GAUL level-2 code
+geodisasters,adm2_name,raw,,GAUL level-2 name
+geodisasters,lat,derived,degrees,"a point inside the unit (point_and_area(), never its centroid)"
+geodisasters,lon,derived,degrees,a point inside the unit
+geodisasters,area_km2,raw,km2,the unit's geodesic area
+geodisasters,geocoding_q,raw,1-4,"Geo-Disasters' grade (Teber et al. 2025): 1 EM-DAT's GAUL id, 2 a GeoNames place matching a GAUL unit, 3 matched through its province, 4 GeoNames only"
+track_points,sid,key,,IBTrACS storm id
+track_points,name,raw,,storm name
+track_points,year,raw,year,season
+track_points,time,raw,UTC,time of the track point
+track_points,basin,raw,,"basin (NA North Atlantic, EP, WP, NI, SI, SP, SA)"
+track_points,nature,raw,,"storm nature (TS tropical, ET extra-tropical, DS disturbance, MX mixed, SS subtropical, NR not reported)"
+track_points,lat,raw,degrees,position
+track_points,lon,raw,degrees,position
+track_points,wmo_agency,raw,,agency of the WMO values
+track_points,wmo_wind_kt,raw,kt,WMO wind as reported
+track_points,wmo_pres_mb,raw,hPa,WMO pressure as reported
+track_points,usa_wind_kt,raw,kt (1-minute),US agencies' wind
+track_points,usa_pres_mb,raw,hPa,US agencies' pressure
+track_points,dist2land_km,raw,km,distance to land
+track_points,landfall_km,raw,km,distance to the next landfall
+track_points,usa_sshs,raw,-5..5,US agencies' Saffir-Simpson category (negative: below tropical storm)
+track_points,usa_rmw_nmi,raw,nautical miles,radius of maximum wind
+track_points,usa_roci_nmi,raw,nautical miles,radius of the outermost closed isobar
+track_points,usa_poci_mb,raw,hPa,pressure of the outermost closed isobar
+track_points,usa_r34_ne_nmi,raw,nautical miles,"34-kt wind radius, north-east quadrant"
+track_points,usa_r34_se_nmi,raw,nautical miles,"34-kt wind radius, south-east quadrant"
+track_points,usa_r34_sw_nmi,raw,nautical miles,"34-kt wind radius, south-west quadrant"
+track_points,usa_r34_nw_nmi,raw,nautical miles,"34-kt wind radius, north-west quadrant"
+track_points,usa_gust_kt,raw,kt,US agencies' gust
+track_points,storm_speed_kt,raw,kt,translation speed
+track_points,storm_dir_deg,raw,degrees,heading
+idmc,iso3,key,,country
+idmc,year,raw,year,year of the displacement
+idmc,start_date,raw,date,start date
+idmc,start_date_accuracy,raw,,Day / Week / Month / Year
+idmc,event_name,raw,,IDMC's event name
+idmc,hazard_type,raw,,IDMC's hazard type
+idmc,displacement,raw,people,new internal displacements
+idmc,glide,raw,,GLIDE numbers
+idmc,hazard,derived,,storm for IDMC storm rows
+idmc,granularity,derived,,"event (dated to the day or week, matchable) or aggregate"
+idmc,disasterno,link,,the EM-DAT storm the row is matched to (with iso3 a foreign key to emdat); empty if none
+idmc,match_method,link,,"glide, date_window_-30_30d, or date_window_-30_30d_month when EM-DAT dates the storm only to its month"
+idmc,idmc_confidence,link,,"high (GLIDE), medium (date window), low (storm known to its month)"
+ifrc,appeal_id,key,,IFRC GO appeal id
+ifrc,iso3,raw,,country
+ifrc,start_date,raw,date,start date
+ifrc,appeal_name,raw,,appeal name
+ifrc,disaster_type,raw,,IFRC disaster type
+ifrc,amount_requested,raw,CHF as reported,appeal budget
+ifrc,amount_funded,raw,CHF as reported,appeal funding
+ifrc,year,derived,year,year of start_date
+ifrc,hazard,derived,,storm for cyclone and storm-surge appeals and appeals with a storm word in the name
+ifrc,granularity,derived,,event or aggregate (country appeal)
+ifrc,disasterno,link,,the EM-DAT storm the appeal is matched to; empty if none
+ifrc,match_method,link,,"glide, date_window_-30_30d, or date_window_-30_30d_month when EM-DAT dates the storm only to its month"
+ifrc,ifrc_confidence,link,,"high (GLIDE), medium (date window), low (storm known to its month)"
+hdi,iso3,key,,country
+hdi,year,key,year,calendar year
+hdi,hdi,raw,0-1,Human Development Index (UNDP)
+wdi,iso3,key,,country
+wdi,year,key,year,calendar year
+wdi,gdp_per_capita,raw,current US$,GDP per person (World Bank)
+wdi,population,raw,people,population
+wgi,iso3,key,,country
+wgi,year,key,year,calendar year
+wgi,wgi_gov_effectiveness,raw,about -2.5..2.5,government effectiveness estimate
+event_points,disasterno,key,,EM-DAT event id; with iso3 a foreign key to emdat
+event_points,iso3,key,,country; with disasterno a foreign key to emdat
+event_points,lat,derived,degrees,"the one coordinate of the storm x country: inside the largest affected unit, else EM-DAT's point (blank in the release), else none"
+event_points,lon,derived,degrees,as lat
+event_points,coord_status,status,,"reported where the record has a coordinate (lat, lon), not_recorded where it has none"
+event_points,coord_source,derived,,"geodisasters, emdat, or empty without a coordinate"
+event_points,coord_anchor,derived,,"largest_unit, emdat_point, or empty without a coordinate"
+event_points,unit_area_km2,derived,km2,area of the unit the point lies in
+event_points,area_source,derived,,units (the dissolved Geo-Disasters units) or point_buffer
+event_points,area_km2,derived,km2,geodesic area of the area read
+event_points,buffer_km,derived,km,the circle's radius (point buffers only)
+event_points,area_land_frac,raw,0-1,share of the area that is land (ESA WorldCover)
+event_points,area_quality,derived,1-4,the worst geocoding_q of the area's units
+event_points,gee_date,meta,date,the day the row was read
+cascades,from_disasterno,key,,the record that started on or before the other (with iso3 a foreign key to emdat)
+cascades,to_disasterno,key,,the record it influences
+cascades,iso3,key,,country of both records
+cascades,days,derived,days,difference of start dates
+cascades,overlap_pct,derived,percent,the higher of the two shares of each area covered by their intersection
+cascades,date_precision,derived,,day (both dates to the day) or month
+cascades,named_by_emdat,derived,true / false,a storm's EM-DAT associated hazards list the other record's type
+cascades,method,meta,,overlap_50pct_lag_91d (Jaeger et al. 2025)
+cascades,confidence,meta,,"high if named by EM-DAT, medium with day dates, else low"
+exposure_features,disasterno,key,,EM-DAT event id; with iso3 a foreign key to emdat
+exposure_features,iso3,key,,country; with disasterno a foreign key to emdat
+exposure_features,ghsl_epoch,meta,year,the GHSL epoch read (nearest the storm's year)
+exposure_features,ghsl_extrapolated,meta,0 / 1,1 when the epoch is a projection (after 2020)
+exposure_features,srtm_elev_mean,raw,m,"mean elevation (SRTM, at 1 km)"
+exposure_features,srtm_elev_mean_gap,status,,"why srtm_elev_mean is empty, only where it is: coord_off_land, outside_coverage, no_land_cell, error or not_extracted"
+exposure_features,srtm_elev_mean_status,status,,"status of srtm_elev_mean, from srtm_elev_mean_gap: reported, zero, not_covered, not_recorded or not_extracted"
+exposure_features,lecz_below_10m_share,raw,0-1,share of the area's land in LECZ v3's coastal 0-10 m zone
+exposure_features,lecz_below_10m_share_gap,status,,"why lecz_below_10m_share is empty, only where it is: not_applicable, coord_off_land, outside_coverage, no_land_cell, error or not_extracted"
+exposure_features,lecz_below_10m_share_status,status,,"status of lecz_below_10m_share, from lecz_below_10m_share_gap: reported, zero, not_applicable, not_covered, not_recorded or not_extracted"
+exposure_features,ghsl_built_km2,raw,km2,built-up surface (GHSL)
+exposure_features,ghsl_built_km2_gap,status,,"why ghsl_built_km2 is empty, only where it is: coord_off_land, no_land_cell, error or not_extracted"
+exposure_features,ghsl_built_km2_status,status,,"status of ghsl_built_km2, from ghsl_built_km2_gap: reported, zero, not_covered, not_recorded or not_extracted"
+exposure_features,gpw_count,raw,people,GPWv4 population of the area (the loss index's weight)
+exposure_features,gpw_count_gap,status,,"why gpw_count is empty, only where it is: no_event_date, not_yet_available, no_data, error or not_extracted"
+exposure_features,gpw_count_status,status,,"status of gpw_count, from gpw_count_gap: reported, zero, not_recorded, not_covered or not_extracted"
+exposure_features,gmw_epoch,meta,year,the Global Mangrove Watch v3 epoch read (nearest the storm's year)
+exposure_features,gmw_mangrove_km2,raw,km2,mangrove area within 50 km of the area (Global Mangrove Watch v3)
+exposure_features,gmw_mangrove_km2_gap,status,,"why gmw_mangrove_km2 is empty, only where it is: not_applicable, no_data, error or not_extracted"
+exposure_features,gmw_mangrove_km2_status,status,,"status of gmw_mangrove_km2, from gmw_mangrove_km2_gap: reported, zero, not_applicable, not_recorded or not_extracted"
+weather_features,disasterno,key,,EM-DAT event id; with iso3 a foreign key to emdat
+weather_features,iso3,key,,country; with disasterno a foreign key to emdat
+weather_features,era5_mslp_min_hpa,raw,hPa,lowest hourly sea-level pressure (ERA5)
+weather_features,era5_mslp_min_hpa_gap,status,,"why era5_mslp_min_hpa is empty, only where it is: no_event_date, no_data, error or not_extracted"
+weather_features,era5_mslp_min_hpa_status,status,,"status of era5_mslp_min_hpa, from era5_mslp_min_hpa_gap: reported, zero, not_recorded or not_extracted"
+weather_features,era5_precip_mm,raw,mm,"storm-total rain, area mean"
+weather_features,era5_precip_mm_gap,status,,"why era5_precip_mm is empty, only where it is: no_event_date, no_data, error or not_extracted"
+weather_features,era5_precip_mm_status,status,,"status of era5_precip_mm, from era5_precip_mm_gap: reported, zero, not_recorded or not_extracted"
+weather_features,era5_precip_max_mm,raw,mm,"storm-total rain, wettest cell"
+weather_features,era5_precip_max_mm_gap,status,,"why era5_precip_max_mm is empty, only where it is: no_event_date, no_data, error or not_extracted"
+weather_features,era5_precip_max_mm_status,status,,"status of era5_precip_max_mm, from era5_precip_max_mm_gap: reported, zero, not_recorded or not_extracted"
+weather_features,era5_wind_max_ms,raw,m/s,strongest hourly 10 m wind
+weather_features,era5_wind_max_ms_gap,status,,"why era5_wind_max_ms is empty, only where it is: no_event_date, no_data, error or not_extracted"
+weather_features,era5_wind_max_ms_status,status,,"status of era5_wind_max_ms, from era5_wind_max_ms_gap: reported, zero, not_recorded or not_extracted"
+weather_features,era5_t2m_min_c,raw,degrees C,lowest 2 m temperature
+weather_features,era5_t2m_min_c_gap,status,,"why era5_t2m_min_c is empty, only where it is: no_event_date, no_data, error or not_extracted"
+weather_features,era5_t2m_min_c_status,status,,"status of era5_t2m_min_c, from era5_t2m_min_c_gap: reported, zero, not_recorded or not_extracted"
+weather_features,era5_n_hours,meta,hours,ERA5 hours read in the window
+weather_features,era5_n_hours_gap,status,,"why era5_n_hours is empty, only where it is: no_event_date, no_data, error or not_extracted"
+weather_features,era5_n_hours_status,status,,"status of era5_n_hours, from era5_n_hours_gap: reported, zero, not_recorded or not_extracted"
+weather_features,era5_wind_excess_max,derived,ratio,largest daily-max 10 m wind / the cell's 1991-2020 98th percentile
+weather_features,era5_wind_excess_max_gap,status,,"why era5_wind_excess_max is empty, only where it is: no_event_date, not_yet_available, no_data, error or not_extracted"
+weather_features,era5_wind_excess_max_status,status,,"status of era5_wind_excess_max, from era5_wind_excess_max_gap: reported, zero, not_recorded, not_covered or not_extracted"
+weather_features,era5_storm_loss_index,derived,people,"sum over cells and days of GPWv4 population x max(ratio - 1, 0)^3 (Klawa & Ulbrich 2003, Eq. 2)"
+weather_features,era5_storm_loss_index_gap,status,,"why era5_storm_loss_index is empty, only where it is: no_event_date, not_yet_available, no_data, error or not_extracted"
+weather_features,era5_storm_loss_index_status,status,,"status of era5_storm_loss_index, from era5_storm_loss_index_gap: reported, zero, not_recorded, not_covered or not_extracted"
+weather_features,era5_wind_p98_mean_ms,raw,m/s,"area mean of the cells' 98th percentile of daily maximum 10 m wind, 1991-2020"
+weather_features,era5_wind_p98_mean_ms_gap,status,,"why era5_wind_p98_mean_ms is empty, only where it is: no_event_date, not_yet_available, no_data, error or not_extracted"
+weather_features,era5_wind_p98_mean_ms_status,status,,"status of era5_wind_p98_mean_ms, from era5_wind_p98_mean_ms_gap: reported, zero, not_recorded, not_covered or not_extracted"
+weather_features,era5_gust_max_ms,raw,m/s,"strongest 10 m wind gust over the window (ERA5, each hour's maximum since the previous hour)"
+weather_features,era5_gust_max_ms_gap,status,,"why era5_gust_max_ms is empty, only where it is: not_applicable, no_event_date, not_yet_available, no_data, error or not_extracted"
+weather_features,era5_gust_max_ms_status,status,,"status of era5_gust_max_ms, from era5_gust_max_ms_gap: reported, zero, not_applicable, not_covered, not_recorded or not_extracted"
+weather_features,chirps_precip_mm,raw,mm,"rain over the window, the area's mean (CHIRPS daily, 50S-50N, land)"
+weather_features,chirps_precip_mm_gap,status,,"why chirps_precip_mm is empty, only where it is: not_applicable, no_event_date, coord_off_land, outside_coverage, no_land_cell, not_yet_available, error or not_extracted"
+weather_features,chirps_precip_mm_status,status,,"status of chirps_precip_mm, from chirps_precip_mm_gap: reported, zero, not_applicable, not_covered, not_recorded or not_extracted"
+weather_features,chirps_precip_max_mm,raw,mm,rain over the window in the area's wettest CHIRPS cell
+weather_features,chirps_precip_max_mm_gap,status,,"why chirps_precip_max_mm is empty, only where it is: not_applicable, no_event_date, coord_off_land, outside_coverage, no_land_cell, not_yet_available, error or not_extracted"
+weather_features,chirps_precip_max_mm_status,status,,"status of chirps_precip_max_mm, from chirps_precip_max_mm_gap: reported, zero, not_applicable, not_covered, not_recorded or not_extracted"
+convection_features,disasterno,key,,EM-DAT event id; with iso3 a foreign key to emdat
+convection_features,iso3,key,,country; with disasterno a foreign key to emdat
+convection_features,era5_cape_max_jkg,raw,J/kg,most CAPE (most-unstable parcel)
+convection_features,era5_cape_max_jkg_gap,status,,"why era5_cape_max_jkg is empty, only where it is: not_applicable, no_event_date, no_data, error or not_extracted"
+convection_features,era5_cape_max_jkg_status,status,,"status of era5_cape_max_jkg, from era5_cape_max_jkg_gap: reported, zero, not_applicable, not_recorded or not_extracted"
+convection_features,era5_shear500_max_ms,raw,m/s,strongest 10 m-500 hPa bulk shear (about 0-5.5 km)
+convection_features,era5_shear500_max_ms_gap,status,,"why era5_shear500_max_ms is empty, only where it is: not_applicable, no_event_date, no_data, error or not_extracted"
+convection_features,era5_shear500_max_ms_status,status,,"status of era5_shear500_max_ms, from era5_shear500_max_ms_gap: reported, zero, not_applicable, not_recorded or not_extracted"
+convection_features,era5_shear850_max_ms,raw,m/s,strongest 10 m-850 hPa bulk shear (about 0-1.5 km)
+convection_features,era5_shear850_max_ms_gap,status,,"why era5_shear850_max_ms is empty, only where it is: not_applicable, no_event_date, no_data, error or not_extracted"
+convection_features,era5_shear850_max_ms_status,status,,"status of era5_shear850_max_ms, from era5_shear850_max_ms_gap: reported, zero, not_applicable, not_recorded or not_extracted"
+convection_features,era5_conv_precip_max_mm,raw,mm,"convective rain total, wettest cell"
+convection_features,era5_conv_precip_max_mm_gap,status,,"why era5_conv_precip_max_mm is empty, only where it is: not_applicable, no_event_date, no_data, error or not_extracted"
+convection_features,era5_conv_precip_max_mm_status,status,,"status of era5_conv_precip_max_mm, from era5_conv_precip_max_mm_gap: reported, zero, not_applicable, not_recorded or not_extracted"
+convection_features,era5_wmaxshear_max,derived,m2/s2,max over cells and hours of sqrt(2 CAPE) x 10 m-500 hPa shear (Taszarek et al. 2020b)
+convection_features,era5_wmaxshear_max_gap,status,,"why era5_wmaxshear_max is empty, only where it is: not_applicable, no_event_date, no_data, error or not_extracted"
+convection_features,era5_wmaxshear_max_status,status,,"status of era5_wmaxshear_max, from era5_wmaxshear_max_gap: reported, zero, not_applicable, not_recorded or not_extracted"
+convection_features,era5_rain_rate_max_mmh,raw,mm/h,highest hourly rain rate
+convection_features,era5_rain_rate_max_mmh_gap,status,,"why era5_rain_rate_max_mmh is empty, only where it is: not_applicable, no_event_date, no_data, error or not_extracted"
+convection_features,era5_rain_rate_max_mmh_status,status,,"status of era5_rain_rate_max_mmh, from era5_rain_rate_max_mmh_gap: reported, zero, not_applicable, not_recorded or not_extracted"
+convection_features,era5_totals_index_max_k,raw,K,highest total totals index
+convection_features,era5_totals_index_max_k_gap,status,,"why era5_totals_index_max_k is empty, only where it is: not_applicable, no_event_date, no_data, error or not_extracted"
+convection_features,era5_totals_index_max_k_status,status,,"status of era5_totals_index_max_k, from era5_totals_index_max_k_gap: reported, zero, not_applicable, not_recorded or not_extracted"
+wave_features,disasterno,key,,EM-DAT event id; with iso3 a foreign key to emdat
+wave_features,iso3,key,,country; with disasterno a foreign key to emdat
+wave_features,era5_wave_height_max_m,raw,m,highest significant wave height within 50 km of the area
+wave_features,era5_wave_height_max_m_gap,status,,"why era5_wave_height_max_m is empty, only where it is: not_applicable, no_event_date, no_sea_cell, error or not_extracted"
+wave_features,era5_wave_height_max_m_status,status,,"status of era5_wave_height_max_m, from era5_wave_height_max_m_gap: reported, zero, not_applicable, not_recorded, not_covered or not_extracted"
+snow_features,disasterno,key,,EM-DAT event id; with iso3 a foreign key to emdat
+snow_features,iso3,key,,country; with disasterno a foreign key to emdat
+snow_features,era5_snowfall_mm,raw,mm water,"storm-total snowfall, area mean"
+snow_features,era5_snowfall_mm_gap,status,,"why era5_snowfall_mm is empty, only where it is: not_applicable, no_event_date, no_data, error or not_extracted"
+snow_features,era5_snowfall_mm_status,status,,"status of era5_snowfall_mm, from era5_snowfall_mm_gap: reported, zero, not_applicable, not_recorded or not_extracted"
+snow_features,era5land_snow_depth_max_m,raw,m,deepest snow (ERA5-Land)
+snow_features,era5land_snow_depth_max_m_gap,status,,"why era5land_snow_depth_max_m is empty, only where it is: not_applicable, no_event_date, no_data, error or not_extracted"
+snow_features,era5land_snow_depth_max_m_status,status,,"status of era5land_snow_depth_max_m, from era5land_snow_depth_max_m_gap: reported, zero, not_applicable, not_recorded or not_extracted"
+dust_features,disasterno,key,,EM-DAT event id; with iso3 a foreign key to emdat
+dust_features,iso3,key,,country; with disasterno a foreign key to emdat
+dust_features,merra2_dust_smass_max_ugm3,raw,ug/m3,"highest dust surface mass concentration over the window (MERRA-2 hourly aerosols, about 50 km)"
+dust_features,merra2_dust_smass_max_ugm3_gap,status,,"why merra2_dust_smass_max_ugm3 is empty, only where it is: not_applicable, no_event_date, not_yet_available, no_data, error or not_extracted"
+dust_features,merra2_dust_smass_max_ugm3_status,status,,"status of merra2_dust_smass_max_ugm3, from merra2_dust_smass_max_ugm3_gap: reported, zero, not_applicable, not_covered, not_recorded or not_extracted"
+dust_features,merra2_dust_aod_max,raw,1,highest dust aerosol optical depth at 550 nm over the window (MERRA-2)
+dust_features,merra2_dust_aod_max_gap,status,,"why merra2_dust_aod_max is empty, only where it is: not_applicable, no_event_date, not_yet_available, no_data, error or not_extracted"
+dust_features,merra2_dust_aod_max_status,status,,"status of merra2_dust_aod_max, from merra2_dust_aod_max_gap: reported, zero, not_applicable, not_covered, not_recorded or not_extracted"
+track_features,disasterno,key,,EM-DAT event id; with iso3 a foreign key to emdat
+track_features,iso3,key,,country; with disasterno a foreign key to emdat
+track_features,track_sid,link,,the assigned IBTrACS storm (= ibtracs.sid)
+track_features,track_name,raw,,its name
+track_features,track_basin,raw,,its basin
+track_features,track_level,link,1-5,Eberenz et al.'s certainty level of the assignment
+track_features,track_method,link,,eberenz_level_{level}_{dt1}_{dt2}d
+track_features,track_confidence,link,,high (levels 1-3) or medium (4-5)
+track_features,track_closest_time,raw,UTC,"time of the track point closest to the area (of the points over it, the strongest)"
+track_features,track_closest_lat,raw,degrees,its position
+track_features,track_closest_lon,raw,degrees,its position
+track_features,track_wind_kt,derived,kt,CLIMADA's modelled (Holland) strongest wind of the storm over the area
+track_features,track_wind_kt_gap,status,,"why track_wind_kt is empty, only where it is: not_applicable, no_event_date, no_track_match or ambiguous_track"
+track_features,track_wind_kt_status,status,,"status of track_wind_kt, from track_wind_kt_gap: reported, zero, not_applicable, not_recorded or not_covered"
+track_features,track_closest_km,derived,km,distance from that point to the area (0 inside)
+track_features,track_closest_km_gap,status,,"why track_closest_km is empty, only where it is: not_applicable, no_event_date, no_track_match or ambiguous_track"
+track_features,track_closest_km_status,status,,"status of track_closest_km, from track_closest_km_gap: reported, zero, not_applicable, not_recorded or not_covered"
+track_features,track_closest_wind_kt,raw,kt (1-minute),IBTrACS wind there
+track_features,track_closest_wind_kt_gap,status,,"why track_closest_wind_kt is empty, only where it is: not_applicable, no_event_date, no_track_match or ambiguous_track"
+track_features,track_closest_wind_kt_status,status,,"status of track_closest_wind_kt, from track_closest_wind_kt_gap: reported, zero, not_applicable, not_recorded or not_covered"
+track_features,track_closest_roci_nmi,raw,nautical miles,radius of the outermost closed isobar there
+track_features,track_closest_roci_nmi_gap,status,,"why track_closest_roci_nmi is empty, only where it is: not_applicable, no_event_date, no_track_match or ambiguous_track"
+track_features,track_closest_roci_nmi_status,status,,"status of track_closest_roci_nmi, from track_closest_roci_nmi_gap: reported, zero, not_applicable, not_recorded or not_covered"
+track_features,track_closest_r34_max_nmi,raw,nautical miles,largest 34-kt radius there
+track_features,track_closest_r34_max_nmi_gap,status,,"why track_closest_r34_max_nmi is empty, only where it is: not_applicable, no_event_date, no_track_match or ambiguous_track"
+track_features,track_closest_r34_max_nmi_status,status,,"status of track_closest_r34_max_nmi, from track_closest_r34_max_nmi_gap: reported, zero, not_applicable, not_recorded or not_covered"
+track_features,track_closest_speed_kt,raw,kt,translation speed there
+track_features,track_closest_speed_kt_gap,status,,"why track_closest_speed_kt is empty, only where it is: not_applicable, no_event_date, no_track_match or ambiguous_track"
+track_features,track_closest_speed_kt_status,status,,"status of track_closest_speed_kt, from track_closest_speed_kt_gap: reported, zero, not_applicable, not_recorded or not_covered"
+track_features,track_closest_dir_deg,raw,degrees,heading there
+track_features,track_closest_dir_deg_gap,status,,"why track_closest_dir_deg is empty, only where it is: not_applicable, no_event_date, no_track_match or ambiguous_track"
+track_features,track_closest_dir_deg_status,status,,"status of track_closest_dir_deg, from track_closest_dir_deg_gap: reported, zero, not_applicable, not_recorded or not_covered"
+track_features,track_closest_rmw_nmi,raw,nautical miles,radius of maximum wind there
+track_features,track_closest_rmw_nmi_gap,status,,"why track_closest_rmw_nmi is empty, only where it is: not_applicable, no_event_date, no_track_match or ambiguous_track"
+track_features,track_closest_rmw_nmi_status,status,,"status of track_closest_rmw_nmi, from track_closest_rmw_nmi_gap: reported, zero, not_applicable, not_recorded or not_covered"
+gtsm_features,disasterno,key,,EM-DAT event id; with iso3 a foreign key to emdat
+gtsm_features,iso3,key,,country; with disasterno a foreign key to emdat
+gtsm_features,box_km,derived,km,"side of the box of stations around the storm's point (the unit's equal-area radius + 50 km, twice)"
+gtsm_features,gtsm_lat,raw,degrees,the station of the highest surge
+gtsm_features,gtsm_lon,raw,degrees,the station of the highest surge
+gtsm_features,gtsm_surge_max_m,raw,m,highest daily surge above the tide among the stations (GTSM v3)
+gtsm_features,gtsm_surge_max_m_gap,status,,"why gtsm_surge_max_m is empty, only where it is: not_applicable, no_event_date, outside_coverage, no_coastal_station, error or not_extracted"
+gtsm_features,gtsm_surge_max_m_status,status,,"status of gtsm_surge_max_m, from gtsm_surge_max_m_gap: reported, zero, not_applicable, not_recorded, not_covered or not_extracted"
+gtsm_features,gtsm_surge_max_date,raw,date,its day
+gtsm_features,gtsm_surge_max_date_gap,status,,"why gtsm_surge_max_date is empty, only where it is: not_applicable, no_event_date, outside_coverage, no_coastal_station, error or not_extracted"
+gtsm_features,gtsm_surge_max_date_status,status,,"status of gtsm_surge_max_date, from gtsm_surge_max_date_gap: reported, not_applicable, not_recorded, not_covered or not_extracted"
+gtsm_features,gtsm_twl_max_m,raw,m,highest daily total water level (tide + surge)
+gtsm_features,gtsm_twl_max_m_gap,status,,"why gtsm_twl_max_m is empty, only where it is: not_applicable, no_event_date, outside_coverage, no_coastal_station, error or not_extracted"
+gtsm_features,gtsm_twl_max_m_status,status,,"status of gtsm_twl_max_m, from gtsm_twl_max_m_gap: reported, zero, not_applicable, not_recorded, not_covered or not_extracted"
+gtsm_features,gtsm_n_stations,derived,count,stations in the box
+gtsm_features,gtsm_n_stations_gap,status,,"why gtsm_n_stations is empty, only where it is: not_applicable, no_event_date, outside_coverage, no_coastal_station, error or not_extracted"
+gtsm_features,gtsm_n_stations_status,status,,"status of gtsm_n_stations, from gtsm_n_stations_gap: reported, zero, not_applicable, not_recorded, not_covered or not_extracted"
+gtsm_features,gtsm_date,meta,date,the day the row was read
+*,reported,status value,,a value other than 0
+*,zero,status value,,the value is 0
+*,not_recorded,status value,,"empty with the gap no_event_date, ambiguous_track, error or no_data, or empty without a gap; unknown, not zero"
+*,not_covered,status value,,"empty because the product does not reach the place or time (gap outside_coverage, coord_off_land, no_land_cell, no_sea_cell, no_coastal_station, no_track_match or not_yet_available), so the absence says nothing"
+*,not_applicable,status value,,"the layer does not measure this storm subtype, so it is not read for it"
+*,not_extracted,status value,,the row has not been read yet
+*,not_applicable,gap value,,the layer does not measure this storm subtype
+*,outside_coverage,gap value,,the layer does not cover the event's years or latitude
+*,coord_off_land,gap value,,"the event area is at sea, so a land-only layer has no value"
+*,no_land_cell,gap value,,a land-only layer returned no cell over the event area
+*,no_sea_cell,gap value,,no cell of a sea-only layer (ERA5 waves) lies within 50 km of the event area
+*,no_coastal_station,gap value,,no storm-surge output station near the event
+*,not_yet_available,gap value,,ERA5 is not yet released for the event's window
+*,no_track_match,gap value,,no IBTrACS storm started 0-50 days before the event has a wind field reaching 17.5 m/s over its area (Eberenz et al. 2021)
+*,ambiguous_track,gap value,,"several IBTrACS storms qualify at every level, so none is assigned (Eberenz et al. 2021)"
+*,no_event_date,gap value,,"EM-DAT gives no start date, so the event has no window"
+*,no_data,gap value,,the layer returned nothing for this event
+*,error,gap value,,the read failed for this event
+*,not_extracted,gap value,,the row has not been read yet

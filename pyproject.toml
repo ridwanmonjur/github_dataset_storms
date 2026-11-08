@@ -1,0 +1,47 @@
+[project]
+name = "hdi-storm-dataset"
+version = "0.1.0"
+description = "Storm disaster database: each storm's context from EM-DAT, Geo-Disasters, IDMC, IFRC, IBTrACS, Earth Engine and Copernicus"
+readme = "README.md"
+authors = [
+    { name = "ridwanmonjur", email = "mjrrdn@gmail.com" }
+]
+requires-python = "==3.12.*"
+dependencies = [
+    "cdsapi>=0.7.7",
+    "climada>=6.1.0",
+    "earthaccess>=0.19.0",
+    "earthengine-api>=1.7",
+    "gdal",
+    "geopandas>=1.2",
+    "netcdf4>=1.7.5.1.post1",
+    "numpy>=2.3,<2.4",
+    "openpyxl>=3.1.5",
+    "pandas>=3.0",
+    "pycountry>=26.2.16",
+    "pyogrio>=0.13.0",
+    "pyoxigraph>=0.5.13",
+    "pyproj>=3.8.0",
+    "pyshacl>=0.40.1",
+    "pyyaml>=6.0.3",
+    "rasterio>=1.5.2",
+    "rdflib>=7.6.0",
+    "requests>=2.34.2",
+    "scikit-learn>=1.9.1",
+    "scipy>=1.18",
+    "shapely>=2.1",
+    "statsmodels>=0.15.0",
+    "tqdm>=4.70.1",
+    "wbgapi>=1.0.14",
+    "xarray>=2026.9.0",
+]
+
+[dependency-groups]
+dev = [
+    "ipykernel>=7.4.0",
+    "pytest>=9.1.1",
+    "ruff>=0.17.1",
+]
+
+[tool.uv.sources]
+gdal = { url = "https://github.com/cgohlke/geospatial-wheels/releases/download/v2026.8.20/gdal-3.13.3-cp312-cp312-win_amd64.whl" }
