@@ -38,6 +38,7 @@ Statistics (`statistics/`) read the cleaned sources and links. The papers being 
 
 - **Two versions of the paper, both active.** Data in Brief (`../manuscript_dataset_storms/latex_data_in_brief/data_in_brief.tex`, rules in `../manuscript_dataset_storms/docs/data_in_brief/rules/`) and Big Earth Data (`../manuscript_dataset_storms/latex_big_earth_data/big_earth_data.tex`, made from the Data in Brief text in Taylor & Francis's Interact layout, rules in `../manuscript_dataset_storms/docs/big_earth_data/rules/`; build with pdflatex and BibTeX with `template/` on `TEXINPUTS` and `BSTINPUTS`). Both cite `../manuscript_dataset_storms/latex_data_in_brief/references.bib`.
 
+- **Slashes in writing** (papers, docs, comments): closed (`a/b`) when both sides are one word or number (`IDMC/IFRC`, `15/20 m/s`), spaced (`a / b`) when either side has more than one word (`Blizzard / winter storm`).
 - **Talk first, implement later.** For a new design or a change of approach, explain the plan and wait for agreement before installing or writing code.
 - **Packages: uv and the local `.venv` only.** `uv add <pkg>` (dev tools: `uv add --dev`) records it in `pyproject.toml` and pins it in `uv.lock`; `uv sync` rebuilds `.venv`; never `pip install` into the global Python. Prefer tried and tested open-source libraries over hand-written plumbing.
 
